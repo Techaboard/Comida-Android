@@ -1,7 +1,5 @@
 # Comida-Android
 
-INTRODUCTION
-
 Comida is a leisure experience at Dining. It is not independent application for reviews or payments, but it is a combination and integrated approach. 
 
 What Comida offers:
