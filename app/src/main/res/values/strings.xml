@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Comida</string>
     <string name="action_settings">Settings</string>
+    <string name="facebook_app_id">1631600230502428</string>
+    <string name="title_activity_logout">LogoutActivity</string>
+
+
 </resources>
