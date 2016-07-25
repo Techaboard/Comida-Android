@@ -27,11 +27,11 @@ import com.comida.adater.CustomListAdapter;
 import com.comida.app.AppController;
 import com.comida.model.Movie;
 
-public class ListViewActivity extends AppCompatActivity {
+public class ListViewActivity extends Activity {
     // Log tag
     private static final String TAG = ListViewActivity.class.getSimpleName();
     // change here url of server api
-    private static final String url = "http://02a53fbe.ngrok.io/api/v1/restaurants?per_page=10&page=1&sort_col=average_ratings";
+    private static final String url = "http://fa94e20d.ngrok.io/api/v1/restaurants?per_page=10&page=1&sort_col=average_ratings";
 
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<Movie>();

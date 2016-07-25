@@ -1,10 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+        <item name ="android:actionBarStyle">@style/CustomActionBar</item>
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -13,10 +14,20 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="CustomActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#f26925</item>
+        <item name="android:logo">@android:color/transparent</item>
+<item name="android:titleTextStyle">@style/CustomTextColor</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
         <item name="android:windowNoTitle">true</item> <!-- Hides the Action Bar -->
         <item name="android:windowFullscreen">true</item> <!-- Hides the status bar -->
+    </style>
+
+    <style name="CustomTextColor" parent="@android:style/TextAppearance" >
+        <item name="android:textColor">#0000ff</item>
+
+
+
     </style>
 
 </resources>
