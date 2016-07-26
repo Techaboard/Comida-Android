@@ -67,6 +67,8 @@ public class CustomListAdapter extends BaseAdapter {
 		TextView average_ratings = (TextView) convertView.findViewById(R.id.average_ratings);
 		TextView address=(TextView) convertView.findViewById(R.id.area);
 		TextView cuisine =(TextView) convertView.findViewById(R.id.cuisine);
+		TextView cost =(TextView)  convertView.findViewById(R.id.cost);
+
 		//TextView genre = (TextView) convertView.findViewById(R.id.genre);
 		//TextView year = (TextView) convertView.findViewById(R.id.releaseYear);
 
@@ -100,6 +102,7 @@ public class CustomListAdapter extends BaseAdapter {
 		average_ratings.setText("Rating: " + String.valueOf(m.getAverage_ratings()));
 		address.setText("Area: " + String.valueOf(m.getAddress()));
 		cuisine.setText("Cusine: " + String.valueOf(m.getCuisine()));
+		cost.setText("Cost for Two: " + "\t"+"₹"+ String.valueOf(m.getCost()));
 		/*// genre
 		String genreStr = "";
 		for (String str : m.getGenre()) {

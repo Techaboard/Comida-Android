@@ -32,7 +32,7 @@ public class SplashActivity extends Activity
 //        mContentView.setSystemUiVisibility(View.GONE | View.SYSTEM_UI_FLAG_FULLSCREEN);
 //***For radndomise splash screen
 
-        int[] yourListOfImages= {R.drawable.splash1, R.drawable.splash2, R.drawable.splash1};
+        int[] yourListOfImages= {R.drawable.splash1, R.drawable.splash1, R.drawable.splash1};
 
         Random random = new Random(System.currentTimeMillis());
         int posOfImage = random.nextInt(yourListOfImages.length - 1);

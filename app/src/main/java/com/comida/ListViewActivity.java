@@ -10,13 +10,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -31,11 +37,12 @@ public class ListViewActivity extends Activity {
     // Log tag
     private static final String TAG = ListViewActivity.class.getSimpleName();
     // change here url of server api
-    private static final String url = "http://fa94e20d.ngrok.io/api/v1/restaurants?per_page=10&page=1&sort_col=average_ratings";
+    private static final String url = "http://fc38b945.ngrok.io/api/v1/restaurants?per_page=10&page=1&sort_col=average_ratings";
 
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<Movie>();
     private ListView listView;
+
     private CustomListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +50,55 @@ public class ListViewActivity extends Activity {
         setContentView(R.layout.activity_listview);
         listView = (ListView) findViewById(R.id.list);
         adapter = new CustomListAdapter(this, movieList);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Movie movie = movieList.get(position);
+                Intent intent = new Intent(ListViewActivity.this, SecondActivity.class);
+                intent.putExtra("name", movie.getName());
+                intent.putExtra("average_ratings", movie.getAverage_ratings());
+                intent.putExtra("area", movie.getAddress());
+                intent.putExtra("image_url", movie.getThumbnailUrl());
+                startActivity(intent);
+       /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Movie movie = movieList.get(position);
+                // retrieve from movie whatever you want
+                movie.getName();
+
+                Intent intent = new Intent(ListViewActivity.this,SecondActivity.class);
+               TextView name = (TextView) findViewById(R.id.name);
+              //  name.setText(movie.getName());
+
+
+
+                intent.putExtra("name",movie.getName());
+                intent.putExtra("url",movie.getThumbnailUrl());
+                intent.putExtra("rating",movie.getAverage_ratings());
+                intent.putExtra("add",movie.getAddress());
+                intent.putExtra("cusine",movie.getCuisine());
+                startActivity(intent);*/
+
+
+
+                /*intent.putExtra("name",movie.getName());
+                String name1 = intent.getStringExtra("name");
+                name.setText(name1);
+                startActivity(intent);
+                intent.putExtra("param1",movie.getName());
+                intent.putExtra("param2",movie.getName());
+                intent.putExtra("param3",movie.getName());*/
+                //Toast.makeText(getApplicationContext(),"Name: "+movie.getName(), Toast.LENGTH_LONG).show();
+            }
+        });
         listView.setAdapter(adapter);
          pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage("Please Keep patience.Its loading...");
+
         pDialog.show();
         // changing action bar color
         //getActionBar().setBackgroundDrawable(
@@ -70,7 +122,7 @@ public class ListViewActivity extends Activity {
                                 movie.setAverage_ratings(obj.getString("average_ratings"));
                                 movie.setCuisine(obj.getString("cuisine"));
                                 movie.setAddress(obj.getJSONObject("address").getString("area"));
-                                //movie.setAddress(obj.getString("address"));
+                                movie.setCost(obj.getString("cost"));
                                 //movie.setYear(obj.getInt("releaseYear"));
                                 // Genre is json array
 								/*JSONArray genreArry = obj.getJSONArray("genre");
@@ -116,12 +168,7 @@ public class ListViewActivity extends Activity {
         }
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }*/
+
 
 }
 

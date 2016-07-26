@@ -3,13 +3,13 @@ package com.comida.model;
 public class Movie {
 	private String name, thumbnailUrl;
 	//private int year;
-	private String average_ratings,area,cuisine,address;
+	private String average_ratings,area,cuisine,address,cost;
 //	private ArrayList<String> genre;
 
 	public Movie() {
 	}
 
-	public Movie(String name, String thumbnailUrl, String average_ratings, String area, String cuisine, String address
+	public Movie(String name, String thumbnailUrl, String average_ratings, String area, String cuisine, String address,String cost
 			) {
 		this.name = name;
 		this.thumbnailUrl = thumbnailUrl;
@@ -17,6 +17,8 @@ public class Movie {
 		this.average_ratings = average_ratings;
 		this.area=area;
 		this.cuisine=cuisine;
+		this.cost=cost;
+
 this.address=address;
 		//this.genre = genre;
 	}
@@ -66,6 +68,15 @@ this.address=address;
 
 	public void setCuisine(String cuisine) {
 		this.cuisine = cuisine;
+	}
+
+		public String getCost() {
+			return cost;
+		}
+
+		public void setCost(String cost) {
+			this.cost = cost;
+
 	}
 	/*public ArrayList<String> getGenre() {
 		return genre;
