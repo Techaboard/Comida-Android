@@ -3,41 +3,35 @@ package com.comida;
 /**
  * Created by techaboard user on 21/07/2016.
  */
-import java.util.ArrayList;
-import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.comida.MainActivity;
-import com.comida.R;
 import com.comida.adater.CustomListAdapter;
 import com.comida.app.AppController;
 import com.comida.model.Movie;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ListViewActivity extends Activity {
     // Log tag
     private static final String TAG = ListViewActivity.class.getSimpleName();
     // change here url of server api
-    private static final String url = "http://fc38b945.ngrok.io/api/v1/restaurants?per_page=10&page=1&sort_col=average_ratings";
+    private static final String url = "http://5d986898.ngrok.io/api/v1/restaurants/get_featured_restaurants";
 
     private ProgressDialog pDialog;
     private List<Movie> movieList = new ArrayList<Movie>();
@@ -58,8 +52,10 @@ public class ListViewActivity extends Activity {
                 Intent intent = new Intent(ListViewActivity.this, SecondActivity.class);
                 intent.putExtra("name", movie.getName());
                 intent.putExtra("average_ratings", movie.getAverage_ratings());
-                intent.putExtra("area", movie.getAddress());
+                intent.putExtra("full_address", movie.getAddress());
                 intent.putExtra("image_url", movie.getThumbnailUrl());
+                intent.putExtra("cuisine",movie.getCuisine());
+                intent.putExtra("cost",movie.getCost());
                 startActivity(intent);
        /* listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,10 +114,11 @@ public class ListViewActivity extends Activity {
                                 //movie.setTitle(obj.getString("title"));
                                 movie.setName(obj.getString("name"));
                                 //movie.setThumbnailUrl(obj.getString("image"));
-                                movie.setThumbnailUrl(obj.getString("image_url"));
+                                movie.setThumbnailUrl(obj.getString("org_image_url"));
                                 movie.setAverage_ratings(obj.getString("average_ratings"));
                                 movie.setCuisine(obj.getString("cuisine"));
                                 movie.setAddress(obj.getJSONObject("address").getString("area"));
+                               // movie.setAddress(obj.getJSONObject("address").getString("full_address"));
                                 movie.setCost(obj.getString("cost"));
                                 //movie.setYear(obj.getInt("releaseYear"));
                                 // Genre is json array

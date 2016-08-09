@@ -1,54 +1,118 @@
 package com.comida;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
-/*import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;*/
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.comida.ListViewActivity;
+import com.comida.util.HomeActivity;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+/*import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;*/
 
 public class MainActivity extends     Activity {
     private CallbackManager callbackManager;
     private LoginButton loginButton;
     private TextView btnLogin;
     private ProgressDialog progressDialog;
+    private AccessTokenTracker accessTokenTracker;
+    private ProfileTracker profileTracker;
+
+    private FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            //AccessToken.getCurrentAccessToken().getToken();
+
+           // mCallbackManager = CallbackManager.Factory.create();
+            AccessToken mAccessToken = AccessToken.getCurrentAccessToken();
+
+            // Once I clear device memory as in the attached pictures, getCurrentAccessToken() will return null next time I open the application.
+
+            if(mAccessToken == null)
+            {
+                Log.d("AccessToken", "Null");
+            }
+            else
+            {
+                Log.d("1- AccessToken", mAccessToken.getToken());
+            }
+            
+            
+            //AccessToken accessToken = loginResult.getAccessToken();
+            String token = AccessToken.getCurrentAccessToken().getToken();
+            Profile profile = Profile.getCurrentProfile();
+            displayMessage(profile);
+        }
+
+        @Override
+        public void onCancel() {
+
+        }
+
+        @Override
+        public void onError(FacebookException error) {
+
+        }
+    };
+
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this);
+        callbackManager = CallbackManager.Factory.create();
+       // mCallbackManager = CallbackManager.Factory.create();
+        AccessToken mAccessToken = AccessToken.getCurrentAccessToken();
+
+        if(mAccessToken == null)
+        {
+            Log.d("AccessToken", "Null");
+        }
+        else
+        {
+            Log.d("1- AccessToken", mAccessToken.getToken());
+        }
+
+
+        profileTracker = new ProfileTracker() {
+            @Override
+            protected void onCurrentProfileChanged(Profile oldProfile, Profile newProfile) {
+                displayMessage(newProfile);
+            }
+        };
+
+       // accessTokenTracker.startTracking();
+        profileTracker.startTracking();
+        AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
+        assert getActionBar() != null;
+        getActionBar().hide();
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
         if(PrefUtils.getCurrentUser(MainActivity.this) != null){
             //Intent homeIntent = new Intent(MainActivity.this, LogoutActivity.class);
-            Intent homeIntent = new Intent(MainActivity.this, ListViewActivity.class);
+            Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(homeIntent);
             finish();
         }
@@ -76,9 +140,17 @@ public class MainActivity extends     Activity {
         });*/
     }
 
+
+    private void displayMessage(Profile profile){
+        if(profile != null){
+            //textView.setText(profile.getName());
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+
 
 
         callbackManager=CallbackManager.Factory.create();
@@ -128,6 +200,7 @@ public class MainActivity extends     Activity {
             // App code
             GraphRequest request = GraphRequest.newMeRequest(
                     loginResult.getAccessToken(),
+
                     new GraphRequest.GraphJSONObjectCallback() {
                         @Override
                         public void onCompleted(
@@ -137,6 +210,7 @@ public class MainActivity extends     Activity {
                             Log.e("response: ", response + "");
                             try {
                                 user = new User();
+
                                 user.facebookID = object.getString("id").toString();
                                 user.email = object.getString("email").toString();
                                 user.name = object.getString("name").toString();
@@ -146,8 +220,8 @@ public class MainActivity extends     Activity {
                             }catch (Exception e){
                                 e.printStackTrace();
                             }
-                            Toast.makeText(MainActivity.this,"welcome "+user.name,Toast.LENGTH_LONG).show();
-                            Intent intent=new Intent(MainActivity.this,ListViewActivity.class);
+                            Toast.makeText(MainActivity.this,"Comida welcome "+user.name,Toast.LENGTH_LONG).show();
+                            Intent intent=new Intent(MainActivity.this,HomeActivity.class);
                             //Intent intent=new Intent(MainActivity.this,LogoutActivity.class);
                             startActivity(intent);
                             finish();
@@ -163,7 +237,7 @@ public class MainActivity extends     Activity {
         }
 
         @Override
-        public void     onCancel() {
+        public void onCancel() {
             progressDialog.dismiss();
         }
 

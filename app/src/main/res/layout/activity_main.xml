@@ -4,13 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background = "@drawable/splash1"
     tools:context="com.comida.MainActivity">
 
     <TextView android:text="Login With Facebook"
 
         android:id="@+id/btnLogin"
-        android:padding="16dp"
+        android:padding="26dp"
         android:layout_centerInParent="true"
         android:background="#0000FF"
         android:textColor="#fff"
@@ -23,11 +23,79 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+         />
 
 
-   <!-- <android.support.design.widget.AppBarLayout
+    <!-- <android.support.design.widget.AppBarLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:theme="@style/AppTheme.AppBarOverlay">
+
+         <android.support.v7.widget.Toolbar
+             android:id="@+id/toolbar"
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:background="?attr/colorPrimary"
+             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+     </android.support.design.widget.AppBarLayout>-->
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.comida.MainActivity"
+    android:background = "@drawable/splash1">
+
+    <TextView android:text="Login With Facebook"
+
+        android:id="@+id/btnLogin"
+        android:padding="16dp"
+        android:paddingBottom="15dp"
+
+        android:background="#0000FF"
+        android:textColor="#fff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.facebook.login.widget.LoginButton
+        android:visibility="gone"
+        android:id="@+id/login_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        android:paddingBottom="15dp"/>
+
+
+   &lt;!&ndash; <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -39,6 +107,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>-->
+    </android.support.design.widget.AppBarLayout>&ndash;&gt;
 
-</RelativeLayout>
+</LinearLayout>
+-->
