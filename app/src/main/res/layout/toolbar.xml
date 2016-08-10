@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
+        android:background="#f26925"     >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/loc1"
+                    android:textColor="#FFFFFF"
+                    android:text="Mumbai"
+                    android:textStyle="bold"
+                    android:layout_alignParentLeft="true"/>
+                />
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/loc"
+            android:layout_below="@+id/loc1"
+            android:contentDescription="@string/loc"
+            android:src="@drawable/loc"
+            android:layout_alignParentLeft="true"/>
+
+</LinearLayout>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+
+            >
+
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+
+            android:layout_toRightOf="@+id/loc"
+            android:id="@+id/bookmark"
+            android:src="@drawable/bookmark"
+           />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            >
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/search"
+
+            android:layout_toRightOf="@+id/bookmark"
+
+            android:src="@drawable/search" />
+
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            >
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/menu"
+
+            android:layout_toRightOf="@+id/search"
+            android:src="@drawable/menu"
+            android:layout_alignParentRight="true"/>
+</LinearLayout>
+</LinearLayout>
+    </android.support.v7.widget.Toolbar>
+
+
+</LinearLayout>

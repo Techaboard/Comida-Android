@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="left">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingRight="7dp"
+        android:paddingLeft="5dp"
+        android:textSize="11dp"
+        android:textColor="#c23c3c"
+        android:textAllCaps="false"
+        android:drawableLeft="@drawable/loc"
+        android:drawablePadding="5dp"
+
+        android:id="@+id/button" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/loc"
+            android:layout_alignParentRight="true"
+            android:id="@+id/notificationID"/>
+
+        <TextView
+            android:id="@+id/notificationsCount"
+            android:layout_marginTop="5dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:text="Mumbai"
+            android:layout_alignParentRight="true"
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:background="@drawable/loc"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/menu" />
+    </RelativeLayout>
+    </RelativeLayout>

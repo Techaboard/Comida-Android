@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.widget.ImageView;
 
 import java.util.Random;
@@ -25,8 +24,8 @@ public class SplashActivity extends Activity
         //   this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.splash_activity);
 
-        assert getActionBar() != null;
-        getActionBar().hide();
+  //      assert getActionBar() != null;
+//        getActionBar().hide();
 
         //      View mContentView = findViewById(R.id.fullscreen_content);
 //        mContentView.setSystemUiVisibility(View.GONE | View.SYSTEM_UI_FLAG_FULLSCREEN);

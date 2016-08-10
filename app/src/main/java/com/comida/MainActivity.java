@@ -105,8 +105,8 @@ public class MainActivity extends     Activity {
         profileTracker.startTracking();
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_main);
-        assert getActionBar() != null;
-        getActionBar().hide();
+  //      assert getActionBar() != null;
+//        getActionBar().hide();
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
