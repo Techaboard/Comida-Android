@@ -1,9 +1,9 @@
 package com.comida.model;
 
 /**
- * Created by techaboard user on 23/08/2016.
+ * Created by techaboard user on 24/08/2016.
  */
-public class MovieDeals {
+public class MovieCuisine {
     private String name, thumbnailUrl;
     private String average_ratings;
     private String area;
@@ -16,9 +16,9 @@ public class MovieDeals {
     private String text;
     public char[] gettext;
 
-    public MovieDeals() {
+    public MovieCuisine() {
     }
-    public MovieDeals(String name, String thumbnailUrl, String average_ratings, String area, String cuisine, String address,String cost,String latitude,String longitude,double distance,String text
+    public MovieCuisine(String name, String thumbnailUrl, String average_ratings, String area, String cuisine, String address,String cost,String latitude,String longitude,double distance,String text
     ) {
         this.name = name;
         this.thumbnailUrl = thumbnailUrl;
@@ -71,13 +71,13 @@ public class MovieDeals {
         this.address = address;
     }
 
-   /* public String getCuisine() {
+   public String getCuisine() {
         return cuisine;
     }
 
     public void setCuisine(String cuisine) {
         this.cuisine = cuisine;
-    }*/
+    }
 
     public String getCost() {
         return cost;

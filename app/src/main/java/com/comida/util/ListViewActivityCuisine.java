@@ -1,8 +1,4 @@
-package com.comida;
-
-/**
- * Created by techaboard user on 21/07/2016.
- */
+package com.comida.util;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -18,9 +14,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.comida.adater.CustomListAdapter;
+import com.comida.R;
+import com.comida.SecondActivity;
+import com.comida.adater.CustomListAdapterCuisine;
 import com.comida.app.AppController;
-import com.comida.model.Movie;
+import com.comida.model.MovieCuisine;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,28 +27,29 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListViewActivity extends Activity {
+/**
+ * Created by techaboard user on 24/08/2016.
+ */
+public class ListViewActivityCuisine extends Activity {
     // Log tag
-    private static final String TAG = ListViewActivity.class.getSimpleName();
+    private static final String TAG = ListViewActivityCuisine.class.getSimpleName();
     // change here url of server api
-    private static final String url = "https://comida-95724.herokuapp.com/api/v1/restaurants?per_page=5&km=1&location=true&lat=19.0558306414&long=72.8339840099";
+    private static final String url = "https://comida-95724.herokuapp.com/api/v1/restaurants/get_restaurants_with_offers";
     private ProgressDialog pDialog;
-    private List<Movie> movieList = new ArrayList<Movie>();
+    private List<MovieCuisine> movieList = new ArrayList<>();
     private ListView listView;
-    private CustomListAdapter adapter;
+    private CustomListAdapterCuisine adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listview);
-        listView = (ListView) findViewById(R.id.list);
-        adapter = new CustomListAdapter(this, movieList);
-
-
+        setContentView(R.layout.activity_listview_deals);
+        listView = (ListView) findViewById(R.id.list_deals);
+        adapter = new CustomListAdapterCuisine(this, movieList);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Movie movie = movieList.get(position);
-                Intent intent = new Intent(ListViewActivity.this, SecondActivity.class);
+                MovieCuisine movie = movieList.get(position);
+                Intent intent = new Intent(ListViewActivityCuisine.this, SecondActivity.class);
                 intent.putExtra("name", movie.getName());
                 intent.putExtra("average_ratings", movie.getAverage_ratings());
                 intent.putExtra("full_address", movie.getAddress());
@@ -62,7 +61,7 @@ public class ListViewActivity extends Activity {
             }
         });
         listView.setAdapter(adapter);
-         pDialog = new ProgressDialog(this);
+        pDialog = new ProgressDialog(this);
         // Showing progress dialog before making http request
         pDialog.setMessage("Please Keep patience.Its loading...");
 
@@ -74,7 +73,9 @@ public class ListViewActivity extends Activity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-                JSONArray restaurantsJSONArray= null;
+                JSONArray
+
+                        restaurantsJSONArray= null;
                 try {
                     restaurantsJSONArray = response.getJSONArray("restaurants");
                 } catch (JSONException e) {
@@ -87,29 +88,36 @@ public class ListViewActivity extends Activity {
                     try {
 
                         JSONObject obj =restaurantsJSONArray.getJSONObject(i);
-                        Movie movie = new Movie();
+                        MovieCuisine movie = new MovieCuisine();
                         //movie.setTitle(obj.getString("title"));
                         movie.setName(obj.getString("name"));
                         //movie.setThumbnailUrl(obj.getString("image"));
                         movie.setThumbnailUrl(obj.getString("org_image_url"));
                         movie.setAverage_ratings(obj.getString("average_ratings"));
-                        movie.setCuisine(obj.getString("cuisine"));
+                          movie.setCuisine(obj.getString("cuisine"));
                         movie.setAddress(obj.getJSONObject("address").getString("area"));
                         // movie.setAddress(obj.getJSONObject("address").getString("full_address"));
                         movie.setCost(obj.getString("cost"));
+//                        movie.setDistance( obj.getDouble("distance"));
+
+                        JSONArray    textJSONArray= obj.getJSONArray("restaurant_offers");
+
+                        for ( int j = 0; j < textJSONArray.length(); j++) {
 
 
+                            JSONObject txtobj =textJSONArray.getJSONObject(j);
+                            //obj.getJSONArray("restaurant_offers").getJSONObject(0).getSt‌​ring("text");
+                            //movie.settext(obj.getJSONArray("restaurant_offers").getJSONObject(j).getSt‌​ring("text"));
+                            movie.settext(txtobj .getString("text"));
+                        }
 
 
-
-                        movie.setDistance( obj.getDouble("distance"));
+                        // movie.settext(obj.getString("text"));
                         movieList.add(movie);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-
-
                 adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
@@ -121,21 +129,24 @@ public class ListViewActivity extends Activity {
             }
         });
 
+
         AppController.getInstance().addToRequestQueue(movieReq);
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         hidePDialog();
     }
+
     private void hidePDialog() {
         if (pDialog != null) {
             pDialog.dismiss();
             pDialog = null;
         }
     }
+
+
+
 }
-
-
-
 

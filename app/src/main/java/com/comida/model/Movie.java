@@ -2,15 +2,21 @@ package com.comida.model;
 
 public class Movie {
 	private String name, thumbnailUrl;
-	//private int year;
-	private String average_ratings,area,cuisine,address,cost;
-//	private ArrayList<String> genre;
+	private String average_ratings;
+	private String area;
+	private String cuisine;
+	private String address;
+	private String cost;
+	private String longitude;
+	private String latitude;
+	private Object distance ;
+	private String text;
+	public char[] gettext;
 
 	public Movie() {
 	}
-
-	public Movie(String name, String thumbnailUrl, String average_ratings, String area, String cuisine, String address,String cost
-			) {
+	public Movie(String name, String thumbnailUrl, String average_ratings, String area, String cuisine, String address,String cost,String latitude,String longitude,double distance,String text
+	) {
 		this.name = name;
 		this.thumbnailUrl = thumbnailUrl;
 		//this.year = year;
@@ -18,9 +24,16 @@ public class Movie {
 		this.area=area;
 		this.cuisine=cuisine;
 		this.cost=cost;
+		this.latitude=latitude;
+		this.longitude=longitude;
+		this.distance=distance;
+		this.text=text;
 
-this.address=address;
-		//this.genre = genre;
+
+
+
+		this.address=address;
+
 	}
 
 	public String getName() {
@@ -39,13 +52,6 @@ this.address=address;
 		this.thumbnailUrl = thumbnailUrl;
 	}
 
-	/*public int getYear() {
-		return year;
-	}*/
-
-	/*public void setYear(int year) {
-		this.year = year;
-	}*/
 
 	public String getAverage_ratings() {
 		return average_ratings;
@@ -70,20 +76,34 @@ this.address=address;
 		this.cuisine = cuisine;
 	}
 
-		public String getCost() {
-			return cost;
-		}
-
-		public void setCost(String cost) {
-			this.cost = cost;
-
-	}
-	/*public ArrayList<String> getGenre() {
-		return genre;
+	public String getCost() {
+		return cost;
 	}
 
-	public void setGenre(ArrayList<String> genre) {
-		this.genre = genre;
+	public void setCost(String cost) {
+		this.cost = cost;
+
 	}
-*/
+
+	public String getlatitude() {
+		return latitude;
+	}
+	public void setlatitude(String latitude ){this.latitude=latitude;}
+
+	public String getlongitude() {
+		return longitude;
+	}
+	public void setlongitude (String longitude ){this.longitude=longitude;}
+
+
+	public double getDistance() {
+		return (double) distance;
+	}
+	public void setDistance(double distance){this.distance=distance;}
+
+
+	/*public String  getText() {
+		return  text;
+	}
+	public void settext(String text){this.text=text;}*/
 }

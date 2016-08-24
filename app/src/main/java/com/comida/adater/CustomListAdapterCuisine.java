@@ -12,20 +12,20 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.comida.R;
 import com.comida.app.AppController;
-import com.comida.model.MovieDeals;
+import com.comida.model.MovieCuisine;
 
 import java.util.List;
 
 /**
- * Created by techaboard user on 23/08/2016.
+ * Created by techaboard user on 24/08/2016.
  */
-public class CustomListAdapterDeals extends BaseAdapter {
+public class CustomListAdapterCuisine extends BaseAdapter {
     private Activity activity;
     private LayoutInflater inflater;
-    private List<MovieDeals> movieItems;
+    private List<MovieCuisine> movieItems;
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
 
-    public CustomListAdapterDeals(Activity activity, List<MovieDeals> movieItems) {
+    public CustomListAdapterCuisine(Activity activity, List<MovieCuisine> movieItems) {
         this.activity = activity;
         this.movieItems = movieItems;
     }
@@ -69,7 +69,7 @@ public class CustomListAdapterDeals extends BaseAdapter {
         TextView text=(TextView) convertView.findViewById(R.id.text1);
 
         // getting movie data for the row
-        MovieDeals m = movieItems.get(position);
+        MovieCuisine m = movieItems.get(position);
 
 
         _ImageView.setImageUrl(m.getThumbnailUrl(), imageLoader);
@@ -82,10 +82,10 @@ public class CustomListAdapterDeals extends BaseAdapter {
         // rating
         average_ratings.setText("Rating: " + String.valueOf(m.getAverage_ratings()));
         address.setText("Area: " + String.valueOf(m.getAddress()));
- //       cuisine.setText("Cusine: " + String.valueOf(m.getCuisine()));
+              cuisine.setText("Cusine: " + String.valueOf(m.getCuisine()));
         cost.setText("Cost for Two: " + "\t"+"₹"+ String.valueOf(m.getCost()));
         text.setText("Deal:"+ "\t"+String.valueOf(m.getText()));
-  //      distance.setText("Distance in Km. "+Double.valueOf( m.getDistance()));
+        //      distance.setText("Distance in Km. "+Double.valueOf( m.getDistance()));
 
 
         return convertView;
